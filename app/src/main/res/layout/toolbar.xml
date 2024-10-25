@@ -12,9 +12,9 @@
         android:paddingTop="15dp"
         android:paddingBottom="20dp">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/plus_icon_bold_white"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/cruz"
             android:layout_marginRight="20dp">
         </ImageView>
         <TextView

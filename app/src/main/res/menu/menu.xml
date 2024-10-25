@@ -15,4 +15,7 @@
     <item
         android:id="@+id/opc5"
         android:title="Modificar"/>
+    <item
+        android:id="@+id/opc6"
+        android:title="Eliminar"/>
 </menu>

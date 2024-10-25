@@ -8,12 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import global.info;
 import pojo.equipo;
 
@@ -35,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         ganados = findViewById(R.id.item3);
         empatados = findViewById(R.id.item4);
         ncontacto = findViewById(R.id.item5);
-
         guardar = findViewById(R.id.guardar);
         limpiar = findViewById(R.id.limpiar);
 
@@ -70,15 +67,10 @@ public class MainActivity extends AppCompatActivity {
     private void guardar() {
         equipo unequipo =new equipo();
         unequipo.setTeam(nomEquipo.getText().toString());
-
         unequipo.setPoints(puntos.getText().toString());
-
         unequipo.setGames(juegos.getText().toString());
-
         unequipo.setWins(ganados.getText().toString());
-
         unequipo.setTies(empatados.getText().toString());
-
         unequipo.setContact(ncontacto.getText().toString());
         info.lista.add(unequipo);
         Toast.makeText(this,"Guardando",Toast.LENGTH_SHORT).show();
@@ -116,6 +108,10 @@ public class MainActivity extends AppCompatActivity {
         }
         if(item.getItemId()==R.id.opc5){
             Intent cambio = new Intent(this, modificar.class);
+            startActivity(cambio);
+        }
+        if(item.getItemId()==R.id.opc6){
+            Intent cambio = new Intent(this, ver2.class);
             startActivity(cambio);
         }
         return super.onOptionsItemSelected(item);

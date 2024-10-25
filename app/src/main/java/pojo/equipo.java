@@ -12,6 +12,8 @@ public class equipo {
     public String games;
     public String contact;
 
+
+
     public void setTeam(String team) {
         this.team = team;
     }
@@ -60,4 +62,16 @@ public class equipo {
     public String getContact() {
         return contact;
     }
+
+
+    private boolean isChecked;
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
 }
+
+

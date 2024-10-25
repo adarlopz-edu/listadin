@@ -96,7 +96,6 @@
                         android:padding="5dp"
                         android:textSize="20sp">
                     </Button>
-
                 </LinearLayout>
         </androidx.cardview.widget.CardView>
 

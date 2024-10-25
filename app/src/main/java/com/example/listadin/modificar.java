@@ -16,7 +16,6 @@ import global.info;
 import pojo.equipo;
 
 public class modificar extends AppCompatActivity {
-
     EditText ne, p, jj, jg, je, noe;
     Button anterior, actualizar, siguiente;
     Integer posicion = -1;
@@ -142,6 +141,10 @@ public class modificar extends AppCompatActivity {
         }
         if(item.getItemId()==R.id.opc5){
             Intent cambio = new Intent(this, modificar.class);
+            startActivity(cambio);
+        }
+        if(item.getItemId()==R.id.opc6){
+            Intent cambio = new Intent(this, ver2.class);
             startActivity(cambio);
         }
         return super.onOptionsItemSelected(item);

@@ -2,21 +2,23 @@ package adaptador;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.listadin.R;
 import com.example.listadin.cardview;
+import com.example.listadin.R;
 import global.info;
 
 public class adaptadorver extends RecyclerView.Adapter<adaptadorver.activity> {
+
     public Context context;
 
     @NonNull
     @Override
-    public activity onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public adaptadorver.activity onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View v = View.inflate(context,R.layout.viewholder, null);
         activity obj = new activity(v);
@@ -25,9 +27,10 @@ public class adaptadorver extends RecyclerView.Adapter<adaptadorver.activity> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull activity miniactivity, int i) {
+    public void onBindViewHolder(@NonNull adaptadorver.activity miniactivity, int i) {
         final int pos = i;
         miniactivity.nombre.setText(info.lista.get(i).getTeam());
+
         miniactivity.nombre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

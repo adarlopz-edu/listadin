@@ -1,75 +1,50 @@
 package com.example.listadin;
 
-import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import adaptador.adaptadoreliminar;
 
-import global.info;
+public class ver2 extends AppCompatActivity {
 
-public class cardview extends AppCompatActivity {
-    Button llamar;
+    RecyclerView rv2;
+    Context context;
     Toolbar toolbar;
-    TextView ne, p, jj, jg, je, noe;
+
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_cardview);
+        setContentView(R.layout.activity_ver2);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        llamar = findViewById(R.id.llamar);
-
-        ne =findViewById(R.id.ne);
-        p =findViewById(R.id.p);
-        jj =findViewById(R.id.jj);
-        jg =findViewById(R.id.jg);
-        je =findViewById(R.id.je);
-        noe =findViewById(R.id.noe);
-
-        llamar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                llamar();
-            }
-        });
-
-        int posicion;
-        posicion=getIntent().getIntExtra("posicion", -1);
-        ne.setText(info.lista.get(posicion).getTeam());
-        p.setText(info.lista.get(posicion).getPoints());
-        jj.setText(info.lista.get(posicion).getWins());
-        jg.setText(info.lista.get(posicion).getGames());
-        je.setText(info.lista.get(posicion).getTies());
-        noe.setText(info.lista.get(posicion).getContact());
+        rv2=findViewById(R.id.rv_lista2);
+        adaptadoreliminar av = new adaptadoreliminar();
+        av.context=this;
+        LinearLayoutManager llm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        rv2.setLayoutManager(llm);
+        rv2.setAdapter(av);
 
     }
-
-    private void llamar() {
-        Intent llamada = new Intent(Intent.ACTION_CALL);
-        llamada.setData(Uri.parse(  "tel: "+ noe.getText().toString()));
-        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, new String[]{
-                    Manifest.permission.CALL_PHONE
-            }, 10);
-        }
-        startActivity(llamada);
+    public void del(View view) {
+        adaptadoreliminar.eliminarSeleccionados();
+        Intent hola = new Intent(this, ver2.class);
+        startActivity(hola);
     }
-
     @Override
     public void onOptionsMenuClosed(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
