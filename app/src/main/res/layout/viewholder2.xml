@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/theview2"
                 android:textSize="35sp"
-                android:text="jajajaj"
+                android:text="test"
                 android:clickable="true" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

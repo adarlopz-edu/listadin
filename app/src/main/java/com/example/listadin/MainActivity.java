@@ -1,6 +1,8 @@
 package com.example.listadin;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,10 +18,10 @@ import global.info;
 import pojo.equipo;
 
 public class MainActivity extends AppCompatActivity {
-
     EditText nomEquipo, puntos, juegos, ganados, empatados, ncontacto;
     Toolbar toolbar;
     Button guardar, limpiar;
+    SharedPreferences archivo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        archivo = this.getSharedPreferences("sesion", Context.MODE_PRIVATE);
         nomEquipo = findViewById(R.id.item0);
         puntos = findViewById(R.id.item1);
         juegos = findViewById(R.id.item2);
@@ -35,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         ncontacto = findViewById(R.id.item5);
         guardar = findViewById(R.id.guardar);
         limpiar = findViewById(R.id.limpiar);
-
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -54,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
     private void limpiar() {
         nomEquipo.setText("");
         puntos.setText("");
@@ -63,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
         empatados.setText("");
         ncontacto.setText("");
     }
-
     private void guardar() {
         equipo unequipo =new equipo();
         unequipo.setTeam(nomEquipo.getText().toString());
@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
         info.lista.add(unequipo);
         Toast.makeText(this,"Guardando",Toast.LENGTH_SHORT).show();
     }
-
     @Override
     public void onOptionsMenuClosed(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -113,6 +112,18 @@ public class MainActivity extends AppCompatActivity {
         if(item.getItemId()==R.id.opc6){
             Intent cambio = new Intent(this, ver2.class);
             startActivity(cambio);
+        }
+        if(item.getItemId()==R.id.wazaa){
+            if(archivo.contains("usuario") && archivo.contains("contra")){
+                SharedPreferences.Editor editor = archivo.edit();
+                editor.remove("usuario");
+                editor.remove("contra");
+                editor.remove("valida");
+                editor.commit();
+                Intent fin = new Intent(this, inicio.class);
+                startActivity(fin);
+                finish();
+            }
         }
         return super.onOptionsItemSelected(item);
     }

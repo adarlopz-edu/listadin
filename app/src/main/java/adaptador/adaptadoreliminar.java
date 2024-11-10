@@ -9,13 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.listadin.R;
-import java.util.ArrayList;
-import java.util.List;
-import pojo.equipo;
-
 public class adaptadoreliminar extends RecyclerView.Adapter<adaptadoreliminar.activity> {
     public Context context;
-
     @NonNull
     @Override
     public activity onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -36,31 +31,16 @@ public class adaptadoreliminar extends RecyclerView.Adapter<adaptadoreliminar.ac
     }
 
     @Override
-
     public int getItemCount() {
         return lista.size();
     }
-
-    public static void eliminarSeleccionados() {
-        List<equipo> itemsParaEliminar = new ArrayList<>();
-        for (equipo item : lista) {
-            if (item.isChecked()) {
-                itemsParaEliminar.add(item);
-            }
-        }
-        //notifyDataSetChanged();
-        lista.removeAll(itemsParaEliminar);
-    }
-
     public class activity extends RecyclerView.ViewHolder {
         TextView nombre;
         CheckBox check;
-
         public activity(@NonNull View itemView) {
             super(itemView);
             nombre = itemView.findViewById(R.id.theview2);
             check = itemView.findViewById(R.id.check);
         }
     }
-
 }

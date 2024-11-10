@@ -1,7 +1,9 @@
 package com.example.listadin;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,18 +24,17 @@ public class cardview extends AppCompatActivity {
     Button llamar;
     Toolbar toolbar;
     TextView ne, p, jj, jg, je, noe;
-
+    SharedPreferences archivo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_cardview);
 
+        archivo = this.getSharedPreferences("sesion", Context.MODE_PRIVATE);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         llamar = findViewById(R.id.llamar);
-
         ne =findViewById(R.id.ne);
         p =findViewById(R.id.p);
         jj =findViewById(R.id.jj);
@@ -56,7 +57,6 @@ public class cardview extends AppCompatActivity {
         jg.setText(info.lista.get(posicion).getGames());
         je.setText(info.lista.get(posicion).getTies());
         noe.setText(info.lista.get(posicion).getContact());
-
     }
 
     private void llamar() {
@@ -69,7 +69,6 @@ public class cardview extends AppCompatActivity {
         }
         startActivity(llamada);
     }
-
     @Override
     public void onOptionsMenuClosed(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -81,7 +80,6 @@ public class cardview extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==R.id.opc1){
@@ -107,6 +105,18 @@ public class cardview extends AppCompatActivity {
         if(item.getItemId()==R.id.opc6){
             Intent cambio = new Intent(this, ver2.class);
             startActivity(cambio);
+        }
+        if(item.getItemId()==R.id.wazaa){
+            if(archivo.contains("usuario") && archivo.contains("contra")){
+                SharedPreferences.Editor editor = archivo.edit();
+                editor.remove("usuario");
+                editor.remove("contra");
+                editor.remove("valida");
+                editor.commit();
+                Intent fin = new Intent(this, inicio.class);
+                startActivity(fin);
+                finish();
+            }
         }
         return super.onOptionsItemSelected(item);
     }

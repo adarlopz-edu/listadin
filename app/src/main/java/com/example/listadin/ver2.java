@@ -1,27 +1,29 @@
 package com.example.listadin;
 
+import static global.info.lista;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.List;
 import adaptador.adaptadoreliminar;
+import pojo.equipo;
 
 public class ver2 extends AppCompatActivity {
-
     RecyclerView rv2;
     Context context;
     Toolbar toolbar;
-
-    private RecyclerView recyclerView;
+    SharedPreferences archivo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class ver2 extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_ver2);
 
+        archivo = this.getSharedPreferences("sesion", MODE_PRIVATE);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -38,25 +41,28 @@ public class ver2 extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rv2.setLayoutManager(llm);
         rv2.setAdapter(av);
-
     }
     public void del(View view) {
-        adaptadoreliminar.eliminarSeleccionados();
-        Intent hola = new Intent(this, ver2.class);
-        startActivity(hola);
+        List<equipo> itemsParaEliminar = new ArrayList<>();
+        for (int i = 0; i < lista.size(); i++) {
+            equipo item = lista.get(i);
+            if (item.isChecked()) {
+                itemsParaEliminar.add(item);
+            }
+        }
+        rv2.getAdapter().notifyDataSetChanged();
+        lista.removeAll(itemsParaEliminar);
     }
     @Override
     public void onOptionsMenuClosed(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         super.onOptionsMenuClosed(menu);
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==R.id.opc1){
@@ -82,6 +88,18 @@ public class ver2 extends AppCompatActivity {
         if(item.getItemId()==R.id.opc6){
             Intent cambio = new Intent(this, ver2.class);
             startActivity(cambio);
+        }
+        if(item.getItemId()==R.id.wazaa){
+            if(archivo.contains("usuario") && archivo.contains("contra")){
+                SharedPreferences.Editor editor = archivo.edit();
+                editor.remove("usuario");
+                editor.remove("contra");
+                editor.remove("valida");
+                editor.commit();
+                Intent fin = new Intent(this, inicio.class);
+                startActivity(fin);
+                finish();
+            }
         }
         return super.onOptionsItemSelected(item);
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/opc1"
         android:title="Ver"/>
@@ -18,4 +19,9 @@
     <item
         android:id="@+id/opc6"
         android:title="Eliminar"/>
+
+    <item android:id="@+id/wazaa"
+        android:title="Cerrar"
+        app:showAsAction="always"
+        android:icon="@drawable/cruz"></item>
 </menu>

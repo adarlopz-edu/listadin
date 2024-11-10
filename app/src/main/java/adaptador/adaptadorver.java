@@ -2,7 +2,6 @@ package adaptador;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -11,18 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.listadin.cardview;
 import com.example.listadin.R;
 import global.info;
-
 public class adaptadorver extends RecyclerView.Adapter<adaptadorver.activity> {
 
     public Context context;
-
     @NonNull
     @Override
     public adaptadorver.activity onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View v = View.inflate(context,R.layout.viewholder, null);
         activity obj = new activity(v);
-
         return obj;
     }
 
@@ -30,7 +25,6 @@ public class adaptadorver extends RecyclerView.Adapter<adaptadorver.activity> {
     public void onBindViewHolder(@NonNull adaptadorver.activity miniactivity, int i) {
         final int pos = i;
         miniactivity.nombre.setText(info.lista.get(i).getTeam());
-
         miniactivity.nombre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,12 +41,9 @@ public class adaptadorver extends RecyclerView.Adapter<adaptadorver.activity> {
     }
 
     public class activity extends RecyclerView.ViewHolder {
-
         TextView nombre;
-
         public activity(@NonNull View itemView) {
             super(itemView);
-
             nombre = itemView.findViewById(R.id.theview);
         }
     }
