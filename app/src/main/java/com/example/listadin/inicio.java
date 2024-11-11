@@ -80,7 +80,6 @@ public class inicio extends AppCompatActivity {
         });
         RequestQueue lanzarPeticion = Volley.newRequestQueue(this);
         lanzarPeticion.add(pet);
-
 //        if(user.getText().toString().equals("GUSA") && pass.getText().toString().equals("123456")){
 //            Intent in = new Intent(this, MainActivity.class);
 //            SharedPreferences.Editor editor = archivo.edit();
@@ -96,6 +95,5 @@ public class inicio extends AppCompatActivity {
 //            pass.setText("");
 //            Toast.makeText(this, "incorrecto", Toast.LENGTH_LONG);
 //        }
-
     }
 }
