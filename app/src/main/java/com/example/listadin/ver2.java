@@ -90,16 +90,24 @@ public class ver2 extends AppCompatActivity {
             startActivity(cambio);
         }
         if(item.getItemId()==R.id.wazaa){
-            if(archivo.contains("usuario") && archivo.contains("contra")){
-                SharedPreferences.Editor editor = archivo.edit();
-                editor.remove("usuario");
-                editor.remove("contra");
-                editor.remove("valida");
+            if(archivo.contains("id_usuario"))  {
+                SharedPreferences.Editor editor =  archivo.edit();
+                editor.remove("id_usuario");
                 editor.commit();
-                Intent fin = new Intent(this, inicio.class);
-                startActivity(fin);
+                Intent x = new Intent(this, inicio.class);
+                startActivity(x);
                 finish();
             }
+//            if(archivo.contains("usuario") && archivo.contains("contra")){
+//                SharedPreferences.Editor editor = archivo.edit();
+//                editor.remove("usuario");
+//                editor.remove("contra");
+//                editor.remove("valida");
+//                editor.commit();
+//                Intent fin = new Intent(this, inicio.class);
+//                startActivity(fin);
+//                finish();
+//            }
         }
         return super.onOptionsItemSelected(item);
     }
