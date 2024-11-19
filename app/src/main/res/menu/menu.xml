@@ -16,9 +16,11 @@
     <item
         android:id="@+id/opc5"
         android:title="Modificar"/>
-    <item
-        android:id="@+id/opc6"
-        android:title="Eliminar"/>
+
+    <item android:id="@+id/opc6"
+        android:title="Eliminar"
+        app:showAsAction="always"
+        android:icon="@drawable/basura"></item>
 
     <item android:id="@+id/wazaa"
         android:title="Cerrar"
